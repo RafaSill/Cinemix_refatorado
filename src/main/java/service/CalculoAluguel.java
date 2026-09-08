@@ -1,13 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package service;
 
-/**
- *
- * @author O SOZINHO
- */
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 public class CalculoAluguel {
+    public double calcularValor (
+            double precoDiaria,
+            LocalDate dataInicio,
+            LocalDate dataDevolucao){
+        
+        long dias = ChronoUnit.DAYS.between(dataInicio, dataDevolucao);
+        
+        return precoDiaria * dias;
+    }
     
 }
