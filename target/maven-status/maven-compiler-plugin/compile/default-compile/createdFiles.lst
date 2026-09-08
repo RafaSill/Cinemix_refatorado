@@ -17,6 +17,7 @@ GUI\home$2.class
 Persistence\TipoUser.class
 GUI\comprarAlugar$5.class
 DAO\UserDAO.class
+service\CalculoAluguel.class
 Persistence\ListaFilmes.class
 Persistence\AlugarFilmes.class
 GUI\cadastro.class
