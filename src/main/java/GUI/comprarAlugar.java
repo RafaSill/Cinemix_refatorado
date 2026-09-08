@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import javax.swing.JOptionPane;
+import service.CalculoAluguel;
 
 public class comprarAlugar extends javax.swing.JFrame {
 
@@ -127,9 +128,14 @@ public class comprarAlugar extends javax.swing.JFrame {
                     LocalDate inicio = LocalDate.parse(dataInicio, formatter);
                     LocalDate devolucao = LocalDate.parse(dataDevolucao, formatter);
 
-                    long dias = ChronoUnit.DAYS.between(inicio, devolucao);
+                    var calculo = new CalculoAluguel();
 
-                    valor = filmeSelecionado.getPrecoAluguel() * dias;
+                    valor = calculo.calcularValor(
+                            filmeSelecionado.getPrecoAluguel(),
+                            inicio,
+                            devolucao
+                    );
+
                     txtPreco.setText(String.valueOf(valor));
 
                 } catch (Exception e) {
@@ -465,7 +471,7 @@ public class comprarAlugar extends javax.swing.JFrame {
                             + "\nData da compra: " + txtDataCompra.getText()
                             + "\nForma de pagamento: " + pagamentoSelecionado
                             + "\nPreço: " + txtPreco.getText());
-                    
+
                     txtPreco.setText("");
 
                 } else if (rbAlugar.isSelected()) {
@@ -484,15 +490,15 @@ public class comprarAlugar extends javax.swing.JFrame {
 
                     var dao = new AlugarFilmesDAO();
                     dao.salvarAluguel(alugar);
-                    
+
                     TipoPagamento pagamentoSelecionado = (TipoPagamento) cbPagamento.getSelectedItem();
 
                     JOptionPane.showMessageDialog(this, "Filme alugado com sucesso!\n"
-                    + "\nFilme: " + cbFilmes.getSelectedItem()
-                    + "\nInicio: " + txtDataAluguel.getText()
-                    + "\nDevolução: " + txtDataDevolucao.getText()
-                    + "\nForma de pagamento: " + pagamentoSelecionado
-                    + "\nPreço: " + txtPreco.getText());
+                            + "\nFilme: " + cbFilmes.getSelectedItem()
+                            + "\nInicio: " + txtDataAluguel.getText()
+                            + "\nDevolução: " + txtDataDevolucao.getText()
+                            + "\nForma de pagamento: " + pagamentoSelecionado
+                            + "\nPreço: " + txtPreco.getText());
                     txtPreco.setText("");
                 }
 
