@@ -6,6 +6,7 @@ GUI\catalogo$2.class
 GUI\home$1.class
 GUI\home$4.class
 GUI\addFilmes$1.class
+service\calcularAluguelTeste.class
 GUI\login.class
 GUI\catalogo$1.class
 GUI\comprarAlugar$7.class
